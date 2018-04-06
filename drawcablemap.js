@@ -1,5 +1,7 @@
 function drawcablemap(mycable, myzoom, mycenter){
 
+	import_js('https://cdn.rawgit.com/protonfork/test-repo/master/map.js');
+	
 	mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
 
 	var map = new mapboxgl.Map({
@@ -8,7 +10,7 @@ function drawcablemap(mycable, myzoom, mycenter){
 		center: mycenter,
 		zoom: 1
 	});
-
+	
 	map.on('load', function () {
 
 		var layers = map.getStyle().layers;
