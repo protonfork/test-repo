@@ -1,7 +1,19 @@
-function drawcablemap(mycable, myzoom, mycenter){
+function require(script) {
+    $.ajax({
+        url: script,
+        dataType: "script",
+        async: false,           // <-- This is the key
+        success: function () {
+            // all good...
+        },
+        error: function () {
+            throw new Error("Could not load script " + script);
+        }
+    });
+}	
 
-	import_js('https://cdn.rawgit.com/protonfork/test-repo/master/map.js');
-	
+function drawcablemap(mycable, myzoom, mycenter){
+	require(('https://cdn.rawgit.com/protonfork/test-repo/master/map.js');
 	mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
 
 	var map = new mapboxgl.Map({
