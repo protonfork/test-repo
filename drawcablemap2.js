@@ -13,7 +13,7 @@ function require(script) {
 }	
 
 function drawcablemap(mycable, myzoom, mycenter){
-	require(('https://cdn.rawgit.com/protonfork/test-repo/master/map.js');
+	require('https://cdn.rawgit.com/protonfork/test-repo/f176e4cdf3dfbb586f43bc04f44b88635c7a55aa/map.js');
 	mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
 
 	var map = new mapboxgl.Map({
