@@ -31,7 +31,7 @@ function drawcablemap(mycable, myzoom, mycenter){
 			'type': 'line',
 			'source': {
 				'type': 'geojson',
-				'data': 'https://raw.githubusercontent.com/protonfork/test-repo/master/map.geojson'
+				'data': cablejson
 			},
 			'layout': {
 				'line-join': 'round',
