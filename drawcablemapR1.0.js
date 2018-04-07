@@ -1,7 +1,7 @@
 function drawcablemap(mycable){
 
 	var cables = $.ajax({
-	  url:"map.geojson",
+	  url:"https://rawgit.com/protonfork/test-repo/master/map.geojson",
 	  beforeSend: function( xhr ) {
 			xhr.overrideMimeType( "application/json" );
 	  },
