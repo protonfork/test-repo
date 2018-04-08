@@ -7,7 +7,7 @@ function drawcablemap(mycable){
 	function processData(allText) {
 	    var allTextLines = allText.split(/\r\n|\n/);
 	    var headers = allTextLines[0].split(',');
-	    var lines = [];
+	    lines = [];
 
 	    for (var i=1; i<allTextLines.length; i++) {
 		var data = allTextLines[i].split(',');
@@ -22,9 +22,7 @@ function drawcablemap(mycable){
 	    }
 	    // alert(lines);
 	}
-	
-	
-	
+		
 	cableDB = $.ajax({
           type: "GET",
           url: csvurl,
@@ -33,7 +31,6 @@ function drawcablemap(mycable){
 	  error: function (xhr) {alert(xhr.statusText)}
 	});
 
-	
 	
 	var cables = $.ajax({
 	  url:geourl,
