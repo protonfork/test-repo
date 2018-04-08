@@ -12,16 +12,9 @@ function drawcablemap(mycable){
 	})
 	
 		$.when(cables).done(function() {
-			if(mycable=="_ALL_CABLES_"){
-			var filtered = 	$.grep(cables.responseJSON.features, function(element, index) {
-				return True;
-			});
-		}
-		else{
-			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
+ 			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
 				return element.properties.name == mycable;
 			});
-		}		
 		var cablesfiltered = {type:'FeatureCollection',features:filtered};
 		
 		mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
