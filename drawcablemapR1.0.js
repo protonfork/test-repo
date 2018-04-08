@@ -16,6 +16,7 @@ function drawcablemap(mycable){
 		if(mycable=="_ALL_CABLES_"){
 			var filtered = 	$.grep(cables.responseJSON.features, function(element, index) {
 				return True;
+			});
 		}
 		else{
 			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
