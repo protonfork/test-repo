@@ -20,7 +20,7 @@ function drawcablemap(mycable){
 		    lines.push(tarr);
 		}
 	    }
-	    // alert(lines);
+	    alert(lines);
 	}
 	
 	
