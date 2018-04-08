@@ -1,18 +1,42 @@
 function drawcablemap(mycable){
 
 	var geourl = "https://rawgit.com/protonfork/test-repo/master/map.geojson";
+	var csvurl = "https://rawgit.com/protonfork/test-repo/master/CableDB.csv";
 	
+
+	function processData(allText) {
+	    var allTextLines = allText.split(/\r\n|\n/);
+	    var headers = allTextLines[0].split(',');
+	    var lines = [];
+
+	    for (var i=1; i<allTextLines.length; i++) {
+		var data = allTextLines[i].split(',');
+		if (data.length == headers.length) {
+
+		    var tarr = [];
+		    for (var j=0; j<headers.length; j++) {
+			tarr.push(headers[j]+":"+data[j]);
+		    }
+		    lines.push(tarr);
+		}
+	    }
+	    // alert(lines);
+	}
+	
+	var cableDB = $.ajax({
+          type: "GET",
+          url: csvurl,
+          dataType: "text",
+	  success: function(data) {processData(data);},
+	  error: function (xhr) {alert(xhr.statusText)}
+	});
+
 	var cables = $.ajax({
 	  url:geourl,
-	  beforeSend: function( xhr ) {
-			xhr.overrideMimeType( "application/json" );
-	  },
+	  beforeSend: function( xhr ) {xhr.overrideMimeType( "application/json" );},
 	  success: console.log("Cable data successfully loaded."),
-	  error: function (xhr) {
-		alert(xhr.statusText)
-	  }
+	  error: function (xhr) {alert(xhr.statusText)}
 	})
-	
 		$.when(cables).done(function() {
 		
 		mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
