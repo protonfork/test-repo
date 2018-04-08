@@ -23,7 +23,7 @@ function drawcablemap(mycable){
 	    // alert(lines);
 	}
 	
-	var cableDB = $.ajax({
+	cableDB = $.ajax({
           type: "GET",
           url: csvurl,
           dataType: "text",
