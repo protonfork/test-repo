@@ -40,7 +40,8 @@ function drawcablemap(mycable){
 			}
 			var nav = new mapboxgl.NavigationControl();
 			map.addControl(nav, 'top-left');
-
+			map.addControl(new mapboxgl.FullscreenControl());
+			
 			map.addLayer({
 				'id': 'subcables',
 				'type': 'line',
