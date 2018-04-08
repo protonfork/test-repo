@@ -23,6 +23,8 @@ function drawcablemap(mycable){
 	    // alert(lines);
 	}
 	
+	
+	
 	cableDB = $.ajax({
           type: "GET",
           url: csvurl,
@@ -31,6 +33,8 @@ function drawcablemap(mycable){
 	  error: function (xhr) {alert(xhr.statusText)}
 	});
 
+	
+	
 	var cables = $.ajax({
 	  url:geourl,
 	  beforeSend: function( xhr ) {xhr.overrideMimeType( "application/json" );},
