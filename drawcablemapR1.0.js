@@ -1,7 +1,9 @@
 function drawcablemap(mycable){
 
+	var geourl = "https://rawgit.com/protonfork/test-repo/master/map.geojson";
+	
 	var cables = $.ajax({
-	  url:"https://rawgit.com/protonfork/test-repo/master/map.geojson",
+	  url:geourl,
 	  beforeSend: function( xhr ) {
 			xhr.overrideMimeType( "application/json" );
 	  },
@@ -12,10 +14,6 @@ function drawcablemap(mycable){
 	})
 	
 		$.when(cables).done(function() {
- 			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
-				return element.properties.name == mycable;
-			});
-		var cablesfiltered = {type:'FeatureCollection',features:filtered};
 		
 		mapboxgl.accessToken = 'pk.eyJ1IjoicmVkc3VuIiwiYSI6ImNqZm5xczdkcjF2OGoycXFmanF6ODYxZWoifQ.YGWf_QZyswuIy6bHtbIwJg';
 
@@ -47,7 +45,7 @@ function drawcablemap(mycable){
 				'type': 'line',
 				'source': {
 					'type': 'geojson',
-					'data': cablesfiltered
+					'data': geourl
 				},
 				'layout': {
 					'line-join': 'round',
@@ -59,6 +57,13 @@ function drawcablemap(mycable){
 				}
 			}, firstSymbolId);
 			
+			map.setFilter('subcables', ['==', 'name', mycable]);
+			
+			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
+					return element.properties.name == mycable;
+				});
+			var cablesfiltered = {type:'FeatureCollection',features:filtered};
+
 			coordinates = cablesfiltered.features[0].geometry.coordinates;
 			posset=-1
 			negset=-1
