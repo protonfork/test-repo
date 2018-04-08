@@ -39,8 +39,8 @@ function drawcablemap(mycable){
 				}
 			}
 			var nav = new mapboxgl.NavigationControl();
-			map.addControl(nav, 'top-left');
-			map.addControl(new mapboxgl.FullscreenControl());
+			var fulls = new mapboxgl.FullscreenControl();
+			map.addControl(fulls, 'top-left');
 			
 			map.addLayer({
 				'id': 'subcables',
