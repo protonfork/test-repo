@@ -38,6 +38,8 @@ function drawcablemap(mycable){
 					break;
 				}
 			}
+			var nav = new mapboxgl.NavigationControl();
+			map.addControl(nav, 'top-left');
 
 			map.addLayer({
 				'id': 'subcables',
