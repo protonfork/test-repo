@@ -118,7 +118,7 @@ function drawcablemap(mycable){
 				}
 			}
 			
-			if (negbounds !== unavailable && posbounds !== unavailable){
+			if (typeof negbounds !== 'undefined' && typeof posbounds !== 'undefined'){
 			
 				distnby180 = (180 - posbounds._ne.lng) + (negbounds._sw.lng+180)
 				distnby0 =  (posbounds._sw.lng) - (negbounds._ne.lng)
@@ -136,10 +136,10 @@ function drawcablemap(mycable){
 			}
 			else
 			{
-				if(negbounds !==unavailable){
+				if(typeof negbounds !=='undefined'){
 					bounds=negbounds;
 				}
-				if(posbounds !==unavailable){
+				if(typeof posbounds !=='undefined'){
 					bounds=posbounds;
 				}
 				
