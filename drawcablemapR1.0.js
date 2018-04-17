@@ -118,19 +118,34 @@ function drawcablemap(mycable){
 				}
 			}
 			
-			distnby180 = (180 - posbounds._ne.lng) + (negbounds._sw.lng+180)
-			distnby0 =  (posbounds._sw.lng) - (negbounds._ne.lng)
+			if (negbounds !== unavailable && posbounds !== unavailable){
 			
-			if (distnby0<=distnby180){
-				// center bound arround 0  
-				bounds = new mapboxgl.LngLatBounds([negbounds._sw.lng,Math.min(negbounds._sw.lat,posbounds._sw.lat)],
-												   [posbounds._ne.lng,Math.max(negbounds._ne.lat,posbounds._ne.lat)]);
+				distnby180 = (180 - posbounds._ne.lng) + (negbounds._sw.lng+180)
+				distnby0 =  (posbounds._sw.lng) - (negbounds._ne.lng)
+
+				if (distnby0<=distnby180){
+					// center bound arround 0  
+					bounds = new mapboxgl.LngLatBounds([negbounds._sw.lng,Math.min(negbounds._sw.lat,posbounds._sw.lat)],
+													   [posbounds._ne.lng,Math.max(negbounds._ne.lat,posbounds._ne.lat)]);
+				}
+				else{
+					// center bound arround 180
+					bounds = new mapboxgl.LngLatBounds([posbounds._sw.lng-360,Math.min(negbounds._sw.lat,posbounds._sw.lat)],
+													   [negbounds._ne.lng,Math.max(negbounds._ne.lat,posbounds._ne.lat)]);
+				}
 			}
-			else{
-				// center bound arround 180
-				bounds = new mapboxgl.LngLatBounds([posbounds._sw.lng-360,Math.min(negbounds._sw.lat,posbounds._sw.lat)],
-												   [negbounds._ne.lng,Math.max(negbounds._ne.lat,posbounds._ne.lat)]);
+			else
+			{
+				if(negbounds !==unavailable){
+					bounds=negbounds;
+				}
+				if(posbounds !==unavailable){
+					bounds=posbounds;
+				}
+				
+				
 			}
+			
 					
 		map.fitBounds(bounds, {
 			padding: 40
