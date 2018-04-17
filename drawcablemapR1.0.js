@@ -118,6 +118,8 @@ function drawcablemap(mycable){
 				}
 			}
 			
+			
+			
 			if (typeof negbounds !== 'undefined' && typeof posbounds !== 'undefined'){
 			
 				distnby180 = (180 - posbounds._ne.lng) + (negbounds._sw.lng+180)
