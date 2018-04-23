@@ -19,6 +19,7 @@ var h = window.height;  if (h === undefined) h = 600;
 var height = parseInt(h);
 if (height < 400) window.height = 400; else window.height = height;
 
+	
 if (window.names === undefined) window.names = false; else
 window.names = parseBoolValue(window.names);
 
