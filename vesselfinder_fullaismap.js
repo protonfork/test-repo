@@ -19,7 +19,6 @@ var h = window.height;  if (h === undefined) h = 600;
 var height = parseInt(h);
 if (height < 400) window.height = 400; else window.height = height;
 
-	
 if (window.names === undefined) window.names = false; else
 window.names = parseBoolValue(window.names);
 
@@ -38,7 +37,7 @@ if(window.longitude!==undefined && parseFloat(window.longitude)!=window.longitud
 document.getElementById("fullmap-vf-embeded").innerHTML =
 	'<iframe name="vesselfinder" id="vesselfinder" '
 	+ ' width="' + '100%' + '"'
-	+ ' height="' + '400' + '"'
+	+ ' height="' + '500' + '"'
 	+ ' frameborder="0"'
 	+ ' src="https://www.vesselfinder.com/aismap?'
 	+ 'zoom=' + ((window.zoom === undefined) ? 'undefined' : window.zoom)
