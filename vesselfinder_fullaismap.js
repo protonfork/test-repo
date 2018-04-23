@@ -43,8 +43,8 @@ document.getElementById("fullmap-vf-embeded").innerHTML =
 	+ 'zoom=' + ((window.zoom === undefined) ? 'undefined' : window.zoom)
 	+ ((window.latitude === undefined) ? '&amp;lat=undefined' : '&amp;lat='+window.latitude)
 	+ ((window.longitude === undefined) ? '&amp;lon=undefined' : '&amp;lon='+window.longitude)
-	+ '&amp;width=' + window.width
-	+ '&amp;height=' + window.height
+	+ '&amp;width=' + '100%'
+	+ '&amp;height=' + '100%'
 	+ '&amp;names='+window.names
 	+ ((window.mmsi === undefined) ? '' : '&amp;mmsi=' + window.mmsi)
 	+ ((window.imo === undefined) ? '' : '&amp;imo=' + window.imo)
