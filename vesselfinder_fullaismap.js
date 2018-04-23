@@ -8,20 +8,9 @@ function parseBoolValue(value) {
 };
 (function() {
 var rh=window.location.href;
-if (rh.indexOf('file://') >= 0 || rh.indexOf('file%3A%2F%2F') >= 0) rh = 'testingonly';
 rh=encodeURIComponent(rh);
-var w = window.width; if (w === undefined) w = 800;
-var ws = w.toString();
-if ((parseInt(w) < 480 && ws.charAt(ws.length-1) !=='%')) w = 480;
-if (ws.charAt(ws.length-1) === '%') window.width = ws; else window.width = parseInt(w);
-
-var h = window.height;  if (h === undefined) h = 600;
-var height = parseInt(h);
-if (height < 400) window.height = 400; else window.height = height;
-
 if (window.names === undefined) window.names = false; else
 window.names = parseBoolValue(window.names);
-
 window.show_track = parseBoolValue(window.show_track);
 
 window.click_to_activate = parseBoolValue(window.click_to_activate);
@@ -36,15 +25,15 @@ if(window.latitude!==undefined && parseFloat(window.latitude)!=window.latitude)w
 if(window.longitude!==undefined && parseFloat(window.longitude)!=window.longitude)window.longitude=undefined;
 document.getElementById("fullmap-vf-embeded").innerHTML =
 	'<iframe name="vesselfinder" id="vesselfinder" '
-	+ ' width="' + window.width + '"'
-	+ ' height="' + window.height + '"'
+	+ ' width="100%"'
+	+ ' height="100%"'
 	+ ' frameborder="0"'
 	+ ' src="https://www.vesselfinder.com/aismap?'
 	+ 'zoom=' + ((window.zoom === undefined) ? 'undefined' : window.zoom)
 	+ ((window.latitude === undefined) ? '&amp;lat=undefined' : '&amp;lat='+window.latitude)
 	+ ((window.longitude === undefined) ? '&amp;lon=undefined' : '&amp;lon='+window.longitude)
-	+ '&amp;width=' + window.width
-	+ '&amp;height=' + window.height
+	+ '&amp;width=' + '"100%"'
+	+ '&amp;height=' + '"100%"'
 	+ '&amp;names='+window.names
 	+ ((window.mmsi === undefined) ? '' : '&amp;mmsi=' + window.mmsi)
 	+ ((window.imo === undefined) ? '' : '&amp;imo=' + window.imo)
