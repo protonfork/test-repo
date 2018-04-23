@@ -37,14 +37,14 @@ if(window.longitude!==undefined && parseFloat(window.longitude)!=window.longitud
 document.getElementById("fullmap-vf-embeded").innerHTML =
 	'<iframe name="vesselfinder" id="vesselfinder" '
 	+ ' width="' + '100%' + '"'
-	+ ' height="' + '100%' + '"'
+	+ ' height="' + '400' + '"'
 	+ ' frameborder="0"'
 	+ ' src="https://www.vesselfinder.com/aismap?'
 	+ 'zoom=' + ((window.zoom === undefined) ? 'undefined' : window.zoom)
 	+ ((window.latitude === undefined) ? '&amp;lat=undefined' : '&amp;lat='+window.latitude)
 	+ ((window.longitude === undefined) ? '&amp;lon=undefined' : '&amp;lon='+window.longitude)
 	+ '&amp;width=' + '100%'
-	+ '&amp;height=' + '100%'
+	+ '&amp;height=' + '400'
 	+ '&amp;names='+window.names
 	+ ((window.mmsi === undefined) ? '' : '&amp;mmsi=' + window.mmsi)
 	+ ((window.imo === undefined) ? '' : '&amp;imo=' + window.imo)
