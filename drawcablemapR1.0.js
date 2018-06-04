@@ -98,7 +98,7 @@ function drawcablemap(mycable){
 						if (cablesfiltered.features[i].geometry.coordinates[j][k][0]>=0){
 							if(posset<0){
 								posbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j][k],
-																	  cablesfiltered.features[i].geometrycoordinates[j][k]);
+																	  cablesfiltered.features[i].geometry.coordinates[j][k]);
 								posset=0;
 							}
 							else{
