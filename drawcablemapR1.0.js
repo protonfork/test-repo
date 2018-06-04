@@ -114,8 +114,9 @@ function drawcablemap(mycable){
 						else{
 							posbounds.extend( cablesfiltered.features[i].geometry[f].coordinates[j] );							
 						}
-				}						
+					}						
 				}
+			    }
 			}
 			
 			
