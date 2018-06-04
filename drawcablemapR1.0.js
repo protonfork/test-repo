@@ -35,7 +35,7 @@ function drawcablemap(mycable){
 
 		var map = new mapboxgl.Map({
 			container: 'map',
-			style: 'mapbox://styles/redsun/cj4bhm6hv4cmw2so1fo9d3xj2',
+			style: 'mapbox://styles/redsun/cji0a9dd608ex2rnsw4pp3sx6',
 			center: [0,0],
 			zoom: 1
 		});
