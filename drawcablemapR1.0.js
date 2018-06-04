@@ -1,8 +1,7 @@
 function drawcablemap(mycable){
 
 	var geourl = "https://rawgit.com/protonfork/test-repo/master/map.telegeo.geojson";
-	var csvurl = "https://rawgit.com/protonfork/test-repo/master/CableDB.csv";
-	
+
 
 	function processData(allText) {
 	    var allTextLines = allText.split(/\r\n|\n/);
@@ -23,14 +22,6 @@ function drawcablemap(mycable){
 	    // alert(lines);
 	}
 		
-	cableDB = $.ajax({
-          type: "GET",
-          url: csvurl,
-          dataType: "text",
-	  success: function(data) {processData(data);},
-	  error: function (xhr) {alert(xhr.statusText)}
-	});
-
 	
 	var cables = $.ajax({
 	  url:geourl,
