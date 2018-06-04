@@ -106,9 +106,7 @@ function drawcablemap(mycable){
 						}
 					}						
 				}
-			    }
-			}
-			
+			    }		
 			
 			
 			if (typeof negbounds !== 'undefined' && typeof posbounds !== 'undefined'){
