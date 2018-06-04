@@ -79,34 +79,35 @@ function drawcablemap(mycable){
 				});
 			var cablesfiltered = {type:'FeatureCollection',features:filtered};
 
-			coordinates = cablesfiltered.features[0].geometry.coordinates;
 			posset=-1
 			negset=-1
 			
 			for (var i=0; i<cablesfiltered.features.length; i++) {
 				for (var j=0; j<cablesfiltered.features[i].geometry.coordinates.length;j++){
-					if (cablesfiltered.features[i].geometry.coordinates[j][0]<0){
-						if(negset<0){
-							negbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j],
-																  cablesfiltered.features[i].geometry.coordinates[j]);
-							negset=0;
-						}
-						else{
-							negbounds.extend( cablesfiltered.features[i].geometry.coordinates[j] );							
-						}
-					}						
-					if (cablesfiltered.features[i].geometry.coordinates[j][0]>=0){
-						if(posset<0){
-							posbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j],
-																  cablesfiltered.features[i].geometrycoordinates[j]);
-							posset=0;
-						}
-						else{
-							posbounds.extend( cablesfiltered.features[i].geometry.coordinates[j] );							
-						}
-					}						
+					for (var k=0; k<cablesfiltered.features[i].geometry.coordinates[j].length;k++){
+						if (cablesfiltered.features[i].geometry.coordinates[j][k][0]<0){
+							if(negset<0){
+								negbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j][k],
+																	  cablesfiltered.features[i].geometry.coordinates[j][k]);
+								negset=0;
+							}
+							else{
+								negbounds.extend( cablesfiltered.features[i].geometry.coordinates[j][k] );							
+							}
+						}						
+						if (cablesfiltered.features[i].geometry.coordinates[j][k][0]>=0){
+							if(posset<0){
+								posbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j][k],
+																	  cablesfiltered.features[i].geometrycoordinates[j][k]);
+								posset=0;
+							}
+							else{
+								posbounds.extend( cablesfiltered.features[i].geometry.coordinates[j][k] );							
+							}
+						}	
+					}
 				}
-			    }		
+			}		
 			
 			
 			if (typeof negbounds !== 'undefined' && typeof posbounds !== 'undefined'){
