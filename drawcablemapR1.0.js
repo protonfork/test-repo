@@ -88,16 +88,17 @@ function drawcablemap(mycable){
 				});
 			var cablesfiltered = {type:'FeatureCollection',features:filtered};
 
-			coordinates = cablesfiltered.features[0].geometry.coordinates;
+			coordinates = cablesfiltered.features[0].geometry[0].coordinates;
 			posset=-1
 			negset=-1
 			
 			for (var i=0; i<cablesfiltered.features.length; i++) {
-				for (var j=0; j<cablesfiltered.features[i].geometry.coordinates.length;j++){
-					if (cablesfiltered.features[i].geometry.coordinates[j][0]<0){
+		            for (var f=0; f<cablesfiltered.features[i].geometry.length;f++){
+				for (var j=0; j<cablesfiltered.features[i].geometry[f].coordinates.length;j++){
+					if (cablesfiltered.features[i].geometry[f].coordinates[j][0]<0){
 						if(negset<0){
-							negbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry.coordinates[j],
-																  cablesfiltered.features[i].geometry.coordinates[j]);
+							negbounds = new mapboxgl.LngLatBounds(cablesfiltered.features[i].geometry[f].coordinates[j],
+																  cablesfiltered.features[i].geometry[f].coordinates[j]);
 							negset=0;
 						}
 						else{
@@ -111,7 +112,7 @@ function drawcablemap(mycable){
 							posset=0;
 						}
 						else{
-							posbounds.extend( cablesfiltered.features[i].geometry.coordinates[j] );							
+							posbounds.extend( cablesfiltered.features[i].geometry[f].coordinates[j] );							
 						}
 				}						
 				}
