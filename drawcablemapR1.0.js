@@ -1,6 +1,6 @@
 function drawcablemap(mycable){
 
-	var geourl = "https://rawgit.com/protonfork/test-repo/master/map.geojson";
+	var geourl = "https://rawgit.com/protonfork/test-repo/master/map.telegeo.geojson";
 	var csvurl = "https://rawgit.com/protonfork/test-repo/master/CableDB.csv";
 	
 
@@ -81,10 +81,10 @@ function drawcablemap(mycable){
 				}
 			}, firstSymbolId);
 			
-			map.setFilter('subcables', ['==', 'name', mycable]);
+			map.setFilter('subcables', ['==', 'cable_id', mycable]);
 			
 			var filtered = $.grep(cables.responseJSON.features, function(element, index) {
-					return element.properties.name == mycable;
+					return element.properties.cable_id == mycable;
 				});
 			var cablesfiltered = {type:'FeatureCollection',features:filtered};
 
