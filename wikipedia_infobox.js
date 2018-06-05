@@ -1,50 +1,37 @@
 	function getinfobox(resolve, reject){
 	var myURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&origin=*&titles="+mytag; //window.location.href 
-	
-	var infowiki = $.ajax( {
-    url: myURL,
-    dataType: 'json',
-    type: 'GET',
-    headers: { 'Api-User-Agent': 'Example/1.0' },
-	success: console.log("Cable data successfully loaded."),
-	error: function (xhr) {alert(xhr.statusText)}
-	});
-	$.when(infowiki).done(function() {
-	
-	var pages = infowiki.responseJSON.query.pages;
-	
-	var result = { info: []};
 
-	for (var key in pages){
-		console.log(key);
-		if (key != "-1"){
-			var wikitext = Object.values(pages)[0].revisions[0]["*"];
-			var splittedwiki = wikitext.split("}}\n")
-			for (l = 0; l < splittedwiki.length; l++){
-				if(splittedwiki[l].match(/^{{Infobox/)) {
-					var infobox = splittedwiki[l].split("| ");
-					infobox.map(function(item) {
-						if(item.match(/ = /)) {
-						   val = item.split(" = ")[1].replace(/(\r\n\t|\n|\r\t)/gm,"");
-						   val = val.replace(/(\{\{|\}\}|\[\[|\]\])/g,"");
-						   val = val.replace(/<br>/g," ");						   
-						   val = val.replace(/\|/g,", ");						   
-						   result.info.push({ 
-								name : item.split(" = ")[0].trim(),
-								value : val.trim()
-							});
-						}
-					});
-				}
-			}
-		}
-	}
+	var query = [
+	 "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>",
+	 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
+	 	 "SELECT DISTINCT * {",
+	 "?iri a dbpedia-owl:Company ;",
+	 "dbpedia-owl:abstract ?description ;",
+	 "dbpedia-owl:foundingYear ?foundingYear ;",
+	 "dbpedia-owl:netIncome ?netIncome ;",
+	 "dbpedia-owl:numberOfEmployees ?numberOfEmployees ;",
+	 "dbpedia-owl:type ?type ;",
+	 "dbpedia-owl:product ?product ;",
+	 "dbpedia-owl:revenue ?revenue;",
+	 "     rdfs:label ?lbl .",
+	 "?lbl bif:contains \"'ciena'\"@en  .",
+	 "FILTER( langMatches(lang(?description),\"en\") )",
+	 "}"].join(" ");
 	
-	if (result.info.length > 0)  {
-		resolve(result)}
-	else {
-		reject('error')}
-	
-//	console.log("stophere")
-	});
+	var url = "http://dbpedia.org/sparql";
+	var queryUrl = url+"?query="+ encodeURIComponent(query) +"&format=json";
+	infodbpedia = $.ajax({
+        dataType: "json",  
+        url: queryUrl,
+        success: console.log("dbpedia data loaded")
+    });
+	$.when(infodbpedia).done(function() {
+            var results = infodbpedia.responseJSON.results.bindings;
+		if (results.length > 0)  {
+			firstr = results[0];
+			resolve(firstr);}
+		else {
+			reject('error')}
+			});
+
 }
