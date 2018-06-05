@@ -30,8 +30,8 @@
 						   val = val.replace(/<br>/g," ");						   
 						   val = val.replace(/\|/g,", ");						   
 						   result.info.push({ 
-								name : item.split(" = ")[0],
-								value : val
+								name : item.split(" = ")[0].trim(),
+								value : val.trim()
 							});
 						}
 					});
