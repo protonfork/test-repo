@@ -1,4 +1,4 @@
-	function getinfobox(mytag){
+	function getinfobox(resolve, reject){
 	var myURL = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&origin=*&titles="+mytag; //window.location.href 
 	
 	var infowiki = $.ajax( {
@@ -40,7 +40,11 @@
 		}
 	}
 	
-	return result;
-	console.log("stophere")
+	if (result.length > 0)  {
+		resolve(result)}
+	else {
+		reject('error')}
+	
+//	console.log("stophere")
 	});
 }
