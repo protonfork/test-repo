@@ -40,7 +40,7 @@
 		}
 	}
 	
-	if (result.length > 0)  {
+	if (result.info.length > 0)  {
 		resolve(result)}
 	else {
 		reject('error')}
