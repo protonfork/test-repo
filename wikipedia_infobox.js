@@ -14,7 +14,7 @@
 	 "dbpedia-owl:product ?product ;",
 	 "dbpedia-owl:revenue ?revenue;",
 	 "     rdfs:label ?lbl .",
-	 "?lbl bif:contains \"'ciena'\"@en  .",
+	 "?lbl bif:contains \"'"+mytag+"'\"@en  .",
 	 "FILTER( langMatches(lang(?description),\"en\") )",
 	 "}"].join(" ");
 	
