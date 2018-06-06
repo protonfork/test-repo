@@ -6,17 +6,21 @@
 	 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>",
 	 	 "SELECT DISTINCT * {",
 	 "?iri a dbpedia-owl:Company ;",
+	 "dbpedia-owl:wikiPageID ?wikiPageID;",
 	 "dbpedia-owl:abstract ?description ;",
-	 "dbpedia-owl:foundingYear ?foundingYear ;",
-	 "dbpedia-owl:netIncome ?netIncome ;",
-	 "dbpedia-owl:numberOfEmployees ?numberOfEmployees ;",
-	 "dbpedia-owl:type ?type ;",
-	 "dbpedia-owl:product ?product ;",
-	 "dbpedia-owl:revenue ?revenue;",
+	 "rdfs:comment ?comment;",
 	 "     rdfs:label ?lbl .",
 	 "?lbl bif:contains \"'"+mytag+"'\"@en  .",
 	 "FILTER( langMatches(lang(?description),\"en\") )",
-	 "}"].join(" ");
+	 "FILTER( langMatches(lang(?lbl),\"en\") ) .",
+  	 "FILTER( langMatches(lang(?comment),\"en\") ) .",
+  	 "OPTIONAL  {?iri dbpedia-owl:foundingYear ?foundingYear }",
+  	 "OPTIONAL  {?iri dbpedia-owl:netIncome ?netIncome }",
+   	 "OPTIONAL  {?iri dbpedia-owl:numberOfEmployees ?numberOfEmployees }",
+  	 "OPTIONAL  {?iri dbpedia-owl:type ?type }",
+  	 "OPTIONAL  {?iri dbpedia-owl:revenue ?revenue  FILTER ( datatype(?revenue) = xsd:usDollar)    }",
+	 "}",
+	 "ORDER BY ?wikiPageID"].join(" ");
 	
 	var url = "https://dbpedia.org/sparql";
 	var queryUrl = url+"?query="+ encodeURIComponent(query) +"&format=json";
