@@ -18,7 +18,7 @@
 	 "FILTER( langMatches(lang(?description),\"en\") )",
 	 "}"].join(" ");
 	
-	var url = "http://dbpedia.org/sparql";
+	var url = "https://dbpedia.org/sparql";
 	var queryUrl = url+"?query="+ encodeURIComponent(query) +"&format=json";
 	infodbpedia = $.ajax({
         dataType: "json",  
